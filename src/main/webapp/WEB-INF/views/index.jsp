@@ -11,7 +11,17 @@
 <body>
 	<!-- Create a form which will have text boxes for Note ID, title, content and status along with a Send 
 		 button. Handle errors like empty fields -->
-
+		<form method="post" action=/dispatcher/saveNote >
+        NoteId: <input type="text" name="noteId" /> <br />
+        NoteTitle: <input type="text" name="noteTitle" /> <br />
+        NoteContent: <input type="text" name="noteContent" /> <br />
+        NoteStatus:  <select name="cars">
+					    <option value="active">Active</option>
+					    <option value="inactive">Inactive</option>
+					  </select> <br />
+	    CreatedBy:  <input type="text" name="createdBy"/><br/>
+        <input type="submit" value="Send">
+        </form>
 	<!-- display all existing notes in a tabular structure with Id, Title,Content,Status, Created Date and Action -->
 </body>
 </html>
