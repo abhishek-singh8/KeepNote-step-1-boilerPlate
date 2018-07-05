@@ -64,15 +64,38 @@ public class NoteController {
 	 * This handler method should map to the URL "/saveNote". 
 	*/
 	 @PostMapping("/saveNote")
-	  public String saveNote(Model modalMap,@RequestParam int noteId,@RequestParam String noteTitle,@RequestParam String noteContent,@RequestParam String noteStatus) {
-		 note.setNoteId(noteId);
+	  public String saveNote(ModelMap model,@RequestParam int noteId,@RequestParam String noteTitle,@RequestParam String noteContent,@RequestParam String noteStatus) {
+		 Note note=(Note)applicationContext.getBean("note");
+		 NoteRepository noteRepository=(NoteRepository)applicationContext.getBean("noteRepository");
+		  
+		List<Note> list=noteRepository.getAllNotes();
+     	  model.addAttribute("message",list);
+     	 if(noteTitle.isEmpty()) {
+             model.addAttribute("titleEmpty", true);
+             model.addAttribute("addNotes", noteRepository.getAllNotes());
+             return "index";
+         }
+         if(noteContent.isEmpty()) {
+             model.addAttribute("contentEmpty", true);
+             model.addAttribute("addNotes", noteRepository.getAllNotes());
+             return "index";
+         }
+         if(noteTitle.equals("null")) {
+             model.addAttribute("titleNull", true);
+             model.addAttribute("addNotes", noteRepository.getAllNotes());
+             return "index";
+         }
+         if(noteContent.equals("null")) {
+             model.addAttribute("contentNull", true);
+             model.addAttribute("addNotes", noteRepository.getAllNotes());
+             return "index";
+         }
+         note.setNoteId(noteId);
 		 note.setNoteTitle(noteTitle);
 		 note.setNoteContent(noteContent);
 		 note.setNoteStatus(noteStatus);
 		 note.setCreatedAt(LocalDateTime.now());
-		 noteRepository.addNote(note);
-		List<Note> list=noteRepository.getAllNotes();
-     	  modalMap.addAttribute("saved",list);
+         noteRepository.addNote(note);
 		return "index";
 	 }
 	
