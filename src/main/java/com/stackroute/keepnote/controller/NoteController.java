@@ -70,6 +70,11 @@ public class NoteController {
 		  
 		List<Note> list=noteRepository.getAllNotes();
      	  model.addAttribute("message",list);
+     	  if((Integer)noteId==null) {
+     		 model.addAttribute("noteIdEmpty", true);
+             model.addAttribute("addNotes", noteRepository.getAllNotes());
+             return "index";
+     	  }
      	 if(noteTitle.isEmpty()) {
              model.addAttribute("titleEmpty", true);
              model.addAttribute("addNotes", noteRepository.getAllNotes());

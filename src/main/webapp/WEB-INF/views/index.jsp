@@ -16,11 +16,12 @@
          <h3>Enter the details</h3>
        <form action="saveNote" method="post">
        <label> NoteID: <input type="text" name="noteId" /></label><br>
+        <c:if test="${noteIdEmpty}"> This field is Required </c:if> 
        <label> Title: <input type="text" name="noteTitle" /> </label><br>
         <c:if test="${titleEmpty}"> This field is Required </c:if> 
         <c:if test="${titleNull}"> Field is Null </c:if> <br>
        <label> Content: <input type="text" name="noteContent" /> </label><br>
-              <c:if test="${contentEmpty}"> This field is Required </c:if> 
+             <c:if test="${contentEmpty}"> This field is Required </c:if> 
          <c:if test="${contentNull}"> Field is Null </c:if> <br>
        <label> Status:<select name="noteStatus">
            <option>Status A</option>

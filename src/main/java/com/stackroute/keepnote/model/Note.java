@@ -2,9 +2,12 @@ package com.stackroute.keepnote.model;
 
 import java.time.LocalDateTime;
 
+import org.springframework.stereotype.Component;
+
 /*
  * The class "Note" will be acting as the data model for the Note data in the ArrayList.
  */
+@Component
 public class Note {
 
 	/*
